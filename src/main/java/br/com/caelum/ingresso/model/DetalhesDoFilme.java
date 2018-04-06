@@ -27,6 +27,28 @@ public class DetalhesDoFilme {
 	
 	@JsonProperty("imdbRating")
 	private Double avaliacao;
+	
+	@JsonProperty("Response")
+	private String response;
+	
+	@JsonProperty("Error")
+	private String error;
+
+	public String getResponse() {
+		return response;
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
 
 	public String getTitulo() {
 		return titulo;

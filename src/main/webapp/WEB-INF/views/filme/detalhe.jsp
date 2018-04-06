@@ -14,6 +14,10 @@
 
 <ingresso:template>
     <jsp:body>
+    	<c:if test="${erros != null && !erros.isEmpty()}">
+    		<p class="alert alert-danger"> ${erros}</p>
+   		</c:if>
+    
 		<div class=" col-md-6 col-md-offset-3">
 	        <h1>${detalhes.titulo}</h1>
 	        <image src="${detalhes.imagem}" />

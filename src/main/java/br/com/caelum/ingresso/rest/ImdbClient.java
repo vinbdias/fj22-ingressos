@@ -3,7 +3,9 @@ package br.com.caelum.ingresso.rest;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.caelum.ingresso.model.DetalhesDoFilme;
@@ -15,7 +17,6 @@ public class ImdbClient {
 	private Logger logger = Logger.getLogger(ImdbClient.class);
 	
 	public Optional<DetalhesDoFilme> request(Filme filme) {
-		
 		RestTemplate client = new RestTemplate();
 		
 		String titulo = filme.getNome().replace(" ", "+");
@@ -24,10 +25,15 @@ public class ImdbClient {
 		
 		try {
 			DetalhesDoFilme detalhesDoFilme = client.getForObject(url, DetalhesDoFilme.class);
+
 			return Optional.of(detalhesDoFilme);
-			
-		} catch (Exception e) {
+		} catch (RestClientException e) {
+			System.out.println(e.getMessage());
 			logger.error(e.getMessage(), e); 
+			return Optional.empty();
+
+		}
+		catch (HttpMessageConversionException e) {
 			return Optional.empty();
 		}
 	}
