@@ -28,7 +28,7 @@ public class Filme {
      * @deprecated hibernate only
      */
     public Filme() {
-
+    	this.preco = BigDecimal.ZERO;
     }
     
     public Filme(String nome, Duration duracao, String genero, BigDecimal preco) {
@@ -44,10 +44,6 @@ public class Filme {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
-	}
-
-	public void setDuracao(Duration duracao) {
-		this.duracao = duracao;
 	}
 
 	public Integer getId() {
